@@ -1,0 +1,394 @@
+# Halaman Reservasi Admin — RuangBK
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Reservasi - RuangBK</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="login-logo">
+                <span>🌿</span> Ruang<span>BK</span>
+            </div>
+        </div>
+
+        <nav class="nav-menu">
+
+            <li class="nav-item">
+                <a href="dashboard.html" class="nav-link">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Ringkasan</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="reservasi-admin.html" class="nav-link active">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Reservasi</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon">📁</span>
+                    <span class="nav-text">Layanan</span>
+                </a>
+            </li>
+
+        </nav>
+
+        <a href="login.html" class="nav-link logout-btn">
+            <span class="nav-icon">🚪</span>
+            <span class="nav-text">Keluar</span>
+        </a>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <header class="top-bar">
+
+            <div class="page-title-area">
+                <h1 class="section-title">Manajemen Reservasi</h1>
+                <p class="login-subtitle">
+                    Kelola jadwal konseling dan status reservasi siswa
+                </p>
+            </div>
+
+            <div class="user-profile">
+                <div class="user-info">
+                    <h4>Admin Utama</h4>
+                    <p>Administrator</p>
+                </div>
+
+                <div class="user-avatar">AD</div>
+            </div>
+
+        </header>
+
+
+        <!-- Filter Section -->
+        <section class="data-section">
+
+            <div class="section-header">
+                <h2 class="section-title">Filter Reservasi</h2>
+            </div>
+
+            <div class="filter-grid">
+
+                <div class="filter-group">
+                    <label>Tanggal</label>
+                    <input type="date" class="filter-input">
+                </div>
+
+                <div class="filter-group">
+                    <label>Status</label>
+                    <select class="filter-input">
+                        <option>Semua</option>
+                        <option>Menunggu</option>
+                        <option>Dikonfirmasi</option>
+                        <option>Selesai</option>
+                        <option>Dibatalkan</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Layanan</label>
+                    <select class="filter-input">
+                        <option>Semua Layanan</option>
+                        <option>Konseling Pribadi</option>
+                        <option>Bimbingan Akademik</option>
+                        <option>Perencanaan Karir</option>
+                        <option>Konseling Kelompok</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Pencarian</label>
+                    <input type="text" class="filter-input" placeholder="Cari nama siswa...">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Reservation Table -->
+        <section class="data-section">
+
+            <div class="section-header">
+                <h2 class="section-title">Daftar Reservasi</h2>
+
+                <button class="btn-primary custom-btn">
+                    + Tambah Reservasi
+                </button>
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>NAMA SISWA</th>
+                            <th>LAYANAN</th>
+                            <th>TANGGAL</th>
+                            <th>WAKTU</th>
+                            <th>STATUS</th>
+                            <th>AKSI</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                <div class="student-name">Budi Santoso</div>
+                                <div class="student-class">XI IPA 1</div>
+                            </td>
+
+                            <td>Konseling Pribadi</td>
+
+                            <td>28 Apr 2026</td>
+
+                            <td>09:00 - 10:00</td>
+
+                            <td>
+                                <span class="status-pill status-confirmed">
+                                    Dikonfirmasi
+                                </span>
+                            </td>
+
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn">👁️</button>
+                                    <button class="action-btn">✏️</button>
+                                    <button class="action-btn delete-btn">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="student-name">Siti Aminah</div>
+                                <div class="student-class">XII IPS 2</div>
+                            </td>
+
+                            <td>Bimbingan Akademik</td>
+
+                            <td>28 Apr 2026</td>
+
+                            <td>13:00 - 14:00</td>
+
+                            <td>
+                                <span class="status-pill status-pending">
+                                    Menunggu
+                                </span>
+                            </td>
+
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn">👁️</button>
+                                    <button class="action-btn">✏️</button>
+                                    <button class="action-btn delete-btn">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="student-name">Rizky Pratama</div>
+                                <div class="student-class">X-7</div>
+                            </td>
+
+                            <td>Perencanaan Karir</td>
+
+                            <td>29 Apr 2026</td>
+
+                            <td>10:00 - 11:00</td>
+
+                            <td>
+                                <span class="status-pill status-completed">
+                                    Selesai
+                                </span>
+                            </td>
+
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn">👁️</button>
+                                    <button class="action-btn">✏️</button>
+                                    <button class="action-btn delete-btn">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Slot Management -->
+        <section class="data-section">
+
+            <div class="section-header">
+                <h2 class="section-title">Manajemen Slot</h2>
+            </div>
+
+            <div class="slot-grid">
+
+                <div class="slot-card active-slot">
+                    <h4>09:00 - 10:00</h4>
+                    <p>Tersedia</p>
+                </div>
+
+                <div class="slot-card booked-slot">
+                    <h4>11:00 - 12:00</h4>
+                    <p>Penuh</p>
+                </div>
+
+                <div class="slot-card active-slot">
+                    <h4>13:00 - 14:00</h4>
+                    <p>Tersedia</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<style>
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.filter-input {
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #DCE3EA;
+    background: white;
+    font-family: 'Outfit', sans-serif;
+}
+
+.custom-btn {
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+}
+
+.student-name {
+    font-weight: 600;
+}
+
+.student-class {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.action-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.delete-btn {
+    background: #FFE8E8;
+}
+
+.slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.slot-card {
+    padding: 1.2rem;
+    border-radius: 14px;
+    border: 1px solid #E5E7EB;
+}
+
+.slot-card h4 {
+    margin-bottom: 0.5rem;
+}
+
+.active-slot {
+    background: #F0FDF4;
+}
+
+.booked-slot {
+    background: #FFF1F2;
+}
+
+.status-completed {
+    background: #E0F7FA;
+    color: #00838F;
+}
+
+@media (max-width: 768px) {
+
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+}
+
+</style>
+
+<script>
+
+console.log('Halaman reservasi admin aktif');
+
+</script>
+
+</body>
+</html>
+```
