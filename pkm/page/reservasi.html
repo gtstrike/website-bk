@@ -94,6 +94,14 @@
        </div>
    </section>
 
+   <!-- Loading Overlay -->
+   <div class="loading-overlay" id="loadingOverlay">
+       <div class="loading-spinner">
+           <div class="spinner"></div>
+           <p>Mengirim data...</p>
+       </div>
+   </div>
+
    <!-- Footer -->
    <footer class="footer">
        <div class="container footer-container">
@@ -177,6 +185,10 @@
        return;
    }
 
+   // Show loading overlay
+   const loadingOverlay = document.getElementById('loadingOverlay');
+   loadingOverlay.classList.add('show');
+
    const data = {
        nama: document.getElementById('nama').value,
        kelas: document.getElementById('kelas').value,
@@ -194,6 +206,9 @@
        });
 
        const result = await response.json();
+
+       // Hide loading overlay
+       loadingOverlay.classList.remove('show');
 
        if (result.success) {
 
@@ -214,11 +229,15 @@
 
    } catch (error) {
 
+       // Hide loading overlay on error
+       loadingOverlay.classList.remove('show');
+
        alert('Gagal mengirim data');
        console.error(error);
    }
 });
    </script>
+   
 </body>
 </html>
 
