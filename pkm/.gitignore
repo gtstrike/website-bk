@@ -1,0 +1,28 @@
+# Database files
+data/*.json
+
+# System files
+.DS_Store
+*.log
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Node modules (jika menggunakan npm)
+node_modules/
+package-lock.json
+
+# Composer
+vendor/
+composer.lock

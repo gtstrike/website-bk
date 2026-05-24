@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../admin/login.php');
+    exit();
+}
+
+// Get user info from session
+$user_name = $_SESSION['user_name'] ?? '';
+$user_email = $_SESSION['user_email'] ?? '';
+$user_kelas = $_SESSION['user_kelas'] ?? '';
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,18 +23,19 @@
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="../style/style.css">
+   <link rel="stylesheet" href="../../public/css/style.css">
 </head>
 <body>
    <!-- Navbar -->
    <nav class="navbar">
        <div class="container nav-container">
-           <a href="../index.html" class="logo">
+           <a href="../../public/index.html" class="logo">
                <span class="logo-icon">🌿</span>
                <span class="logo-text">Ruang<span>BK</span></span>
            </a>
            <ul class="nav-links">
-               <li><a href="../index.html">Kembali ke Beranda</a></li>
+               <li><a href="../../public/index.html">Kembali ke Beranda</a></li>
+               <li><a href="../api/logout.php">Logout</a></li>
            </ul>
            <div class="mobile-menu-btn">
                <span></span>
@@ -41,19 +57,19 @@
    <section class="section-padding" style="padding-top: 0; transform: translateY(-3rem);">
        <div class="container">
            <div class="form-container">
-               <form action="#" method="POST" id="reservasiForm">
+               <form action="process_reservasi.php" method="POST" id="reservasiForm">
                    <div class="form-column">
                        <div class="form-group">
                            <label for="nama" class="form-label">Nama Lengkap</label>
-                           <input type="text" id="nama" name="nama" class="form-control" placeholder="Masukkan nama lengkapmu" required>
+                           <input type="text" id="nama" name="nama" class="form-control" placeholder="Masukkan nama lengkapmu" value="<?php echo htmlspecialchars($user_name); ?>" required>
                        </div>
                        <div class="form-group">
                            <label for="email" class="form-label">Email</label>
-                           <input type="email" id="email" name="email" class="form-control" placeholder="Contoh: contoh@gmail.com" required>
+                           <input type="email" id="email" name="email" class="form-control" placeholder="Contoh: contoh@gmail.com" value="<?php echo htmlspecialchars($user_email); ?>" required>
                        </div>
                        <div class="form-group">
                            <label for="kelas" class="form-label">Kelas / Jurusan</label>
-                           <input type="text" id="kelas" name="kelas" class="form-control" placeholder="Contoh: XII IPA 1" required>
+                           <input type="text" id="kelas" name="kelas" class="form-control" placeholder="Contoh: XII IPA 1" value="<?php echo htmlspecialchars($user_kelas); ?>" required>
                        </div>
                    </div>
 
@@ -106,7 +122,7 @@
    <footer class="footer">
        <div class="container footer-container">
            <div class="footer-info">
-               <a href="../index.html" class="logo footer-logo">
+               <a href="../../public/index.html" class="logo footer-logo">
                    <span class="logo-icon">🌿</span>
                    <span class="logo-text">Ruang<span>BK</span></span>
                </a>
@@ -115,8 +131,8 @@
            <div class="footer-links">
                <h4 class="footer-heading">Tautan Cepat</h4>
                <ul>
-                   <li><a href="../index.html">Beranda</a></li>
-                   <li><a href="../index.html#layanan">Layanan</a></li>
+                   <li><a href="../../public/index.html">Beranda</a></li>
+                   <li><a href="../../public/index.html#layanan">Layanan</a></li>
                </ul>
            </div>
            <div class="footer-contact">
@@ -132,7 +148,7 @@
        </div>
    </footer>
 
-   <script src="script.js"></script>
+   <script src="../../public/js/script.js"></script>
    <script>
        // Handle Layanan selection
        const layananBtns = document.querySelectorAll('.layanan-btn');
@@ -170,74 +186,56 @@
            });
        });
 
-       // Simple form submission handler
+       // Form submission handler
        document.getElementById('reservasiForm').addEventListener('submit', async function(e) {
+           e.preventDefault();
 
-   e.preventDefault();
+           if (!layananInput.value) {
+               alert('Silakan pilih jenis layanan!');
+               return;
+           }
 
-   if (!layananInput.value) {
-       alert('Silakan pilih jenis layanan!');
-       return;
-   }
+           if (!waktuInput.value) {
+               alert('Silakan pilih jam konseling!');
+               return;
+           }
 
-   if (!waktuInput.value) {
-       alert('Silakan pilih jam konseling!');
-       return;
-   }
+           // Show loading overlay
+           const loadingOverlay = document.getElementById('loadingOverlay');
+           loadingOverlay.classList.add('show');
 
-   // Show loading overlay
-   const loadingOverlay = document.getElementById('loadingOverlay');
-   loadingOverlay.classList.add('show');
+           const formData = new FormData(this);
 
-   const data = {
-       nama: document.getElementById('nama').value,
-       kelas: document.getElementById('kelas').value,
-       layanan: layananInput.value,
-       tanggal: document.getElementById('tanggal').value,
-       waktu: waktuInput.value,
-       catatan: document.getElementById('catatan').value
-   };
+           try {
+               const response = await fetch('../api/process_reservasi.php', {
+                   method: 'POST',
+                   body: formData
+               });
 
-   try {
+               const result = await response.json();
 
-       const response = await fetch('https://script.google.com/macros/s/AKfycbwDBlsS_zhxOJo5yf0KyYiQYhuyegnM52HNfJiWNqIHRm5hSWXi9j-7EZsO_zyJfLGJ/exec', {
-           method: 'POST',
-           body: JSON.stringify(data)
+               // Hide loading overlay
+               loadingOverlay.classList.remove('show');
+
+               if (result.success) {
+                   alert('Reservasi berhasil dikirim!');
+                   this.reset();
+                   waktuInput.value = '';
+                   layananInput.value = '';
+                   timeSlotBtns.forEach(btn => btn.classList.remove('selected'));
+                   layananBtns.forEach(btn => btn.classList.remove('selected'));
+               } else {
+                   alert(result.message || 'Terjadi kesalahan');
+               }
+
+           } catch (error) {
+               // Hide loading overlay on error
+               loadingOverlay.classList.remove('show');
+               alert('Gagal mengirim data');
+               console.error(error);
+           }
        });
-
-       const result = await response.json();
-
-       // Hide loading overlay
-       loadingOverlay.classList.remove('show');
-
-       if (result.success) {
-
-           alert('Reservasi berhasil dikirim!');
-
-           this.reset();
-
-           waktuInput.value = '';
-           layananInput.value = '';
-
-           timeSlotBtns.forEach(btn => btn.classList.remove('selected'));
-           layananBtns.forEach(btn => btn.classList.remove('selected'));
-
-       } else {
-
-           alert(result.message);
-       }
-
-   } catch (error) {
-
-       // Hide loading overlay on error
-       loadingOverlay.classList.remove('show');
-
-       alert('Gagal mengirim data');
-       console.error(error);
-   }
-});
    </script>
    
 </body>
 </html>
-
