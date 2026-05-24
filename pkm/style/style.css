@@ -684,6 +684,12 @@ textarea.form-control {
     gap: 1.5rem;
 }
 
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
 .page-header {
     padding: 10rem 0 5rem;
     background: linear-gradient(135deg, var(--bg-white) 0%, var(--primary-light) 100%);

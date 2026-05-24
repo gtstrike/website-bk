@@ -42,3 +42,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+const lihatBtns = document.querySelectorAll('.lihat-btn');
+
+lihatBtns.forEach(btn => {
+
+    btn.addEventListener('click', function(e) {
+
+        e.stopPropagation();
+
+        const dropdown =
+            this.parentElement.querySelector('.detail-dropdown');
+
+        document
+            .querySelectorAll('.detail-dropdown')
+            .forEach(item => {
+
+                if (item !== dropdown) {
+                    item.classList.remove('active');
+                }
+
+            });
+
+        dropdown.classList.toggle('active');
+
+    });
+
+});
+
+document.addEventListener('click', function() {
+
+    document
+        .querySelectorAll('.detail-dropdown')
+        .forEach(item => {
+            item.classList.remove('active');
+        });
+
+});
