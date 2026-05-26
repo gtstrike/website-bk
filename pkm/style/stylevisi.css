@@ -21,7 +21,7 @@
             background: #fff;
             border-bottom: 1px solid #e2e8f0;
             padding: 0.75rem 1.5rem;
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
             position: sticky; top: 0; z-index: 100;
         }
         .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
@@ -213,3 +213,43 @@
         .footer-links-list a { color: #94a3b8; text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
         .footer-links-list a:hover { color: #5eead4; }
         .footer-bottom { text-align: center; padding-top: 1.25rem; font-size: 0.8rem; color: #64748b; max-width: 1100px; margin: 0 auto; }
+
+        /* ── RESPONSIVE ADJUSTMENTS ── */
+        @media (max-width: 900px) {
+            .content-wrap { padding: 2.5rem 1rem 3rem; }
+            .page-header { padding: 3.5rem 1rem 4rem; }
+            .page-header-icon { font-size: 2.8rem; }
+            .page-header p { max-width: 100%; font-size: 0.98rem; }
+            .section-card, .intro-card { padding: 1.25rem; border-radius: 14px; }
+            .uu-link-wrap { padding: 1rem; }
+        }
+
+        @media (max-width: 640px) {
+            .nav-logo-text { font-size: 1rem; }
+            .nav-logo-sub { display: none; }
+            .nav-actions { width: 100%; display: flex; justify-content: flex-end; gap: 0.5rem; }
+            .nav-back, .nav-cta { padding: 0.35rem 0.75rem; font-size: 0.82rem; }
+            .page-header { text-align: left; padding: 2.25rem 1rem 2.75rem; }
+            .page-header h1 { font-size: clamp(1.4rem, 6vw, 2.2rem); text-align: left; }
+            .page-header-icon { margin-bottom: 0.5rem; }
+            .content-wrap { padding: 1.5rem 1rem; gap: 1rem; }
+            .intro-card { padding: 1rem; }
+            .visi-block { padding: 1rem; }
+            .misi-list li { font-size: 0.9rem; }
+            .misi-num { width: 22px; height: 22px; min-width: 22px; font-size: 0.68rem; }
+            .uu-link-wrap { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+            .uu-arrow { margin-left: 0; align-self: flex-end; }
+            .cta-block { padding: 1.25rem 1rem; }
+            .cta-btn { width: 100%; padding: 0.65rem; }
+        }
+
+        @media (max-width: 420px) {
+            .nav-actions { justify-content: space-between; }
+            .nav-back { display: none; }
+            .page-header { padding: 1.75rem 0.9rem 2rem; }
+            .page-header h1 { font-size: clamp(1.2rem, 7vw, 1.9rem); }
+            .page-header p { font-size: 0.92rem; }
+            .intro-card, .section-card { padding: 0.85rem; border-radius: 12px; }
+            .uu-text-title { font-size: 0.78rem; }
+            .uu-text-sub { font-size: 0.72rem; }
+        }

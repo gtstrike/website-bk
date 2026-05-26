@@ -25,6 +25,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -327,11 +329,6 @@
         .footer-bottom { text-align: center; padding-top: 1.25rem; font-size: 0.8rem; color: #64748b; max-width: 1100px; margin: 0 auto; }
 
         /* ── RESPONSIVE ── */
-        @media (max-width: 600px) {
-            .carousel-arrow { display: none; }
-            .carousel-outer { padding: 0 0.5rem; }
-        }
-        /* Cap the carousel width so max 3 cards show at once */
         .carousel-section-inner {
             max-width: 1200px;
             margin: 0 auto;
@@ -339,5 +336,44 @@
         }
         .carousel-outer {
             position: relative;
-            padding: 0 3.5rem;
+            padding: 0 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .page-header { padding: 3rem 1rem 3.5rem; text-align: left; }
+            .page-header h1 { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+            .page-header p { max-width: 100%; }
+            .carousel-track { gap: 1rem; padding: 0.75rem 0.25rem 1.5rem; }
+            .guru-card { flex: 0 0 min(86vw, 360px); border-radius: 18px; }
+            .guru-photo-wrap { height: 240px; }
+            .guru-info { padding: 1rem; }
+            .guru-name { font-size: 1.12rem; }
+        }
+
+        @media (max-width: 640px) {
+            .nav-logo-sub { display: none; }
+            .nav-back { padding: 0.35rem 0.8rem; font-size: 0.82rem; }
+            .page-header { padding: 2.25rem 0.9rem 2.75rem; }
+            .page-header h1 { font-size: clamp(1.3rem, 7vw, 1.9rem); }
+            .page-header-icon { font-size: 2.6rem; }
+            .guru-photo-wrap { height: 200px; }
+            .guru-card { flex: 0 0 88vw; }
+            .guru-detail-list li { font-size: 0.9rem; }
+            .detail-icon { width: 26px; height: 26px; min-width: 26px; }
+            .carousel-arrow { display: none; }
+        }
+
+        @media (max-width: 420px) {
+            .page-header { padding: 1.6rem 0.8rem 2rem; }
+            .page-header h1 { font-size: clamp(1.1rem, 8vw, 1.6rem); }
+            .guru-photo-wrap { height: 160px; }
+            .guru-name { font-size: 1rem; }
+            .guru-info { padding: 0.85rem; }
+            .guru-card { border-radius: 12px; }
+        }
+
+        /* Larger screens: show multiple cards */
+        @media (min-width: 1100px) {
+            .guru-card { flex: 0 0 320px; }
+            .carousel-track { gap: 2rem; padding: 1.25rem 0.5rem 2rem; }
         }
