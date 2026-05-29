@@ -147,6 +147,7 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .logo {
@@ -444,16 +445,23 @@ ul {
     position: relative;
 }
 
+.about-images-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
 .rounded-img {
     width: 100%;
     border-radius: 20px;
     box-shadow: var(--shadow-lg);
+    object-fit: cover;
 }
 
 .about-card-float {
     position: absolute;
-    bottom: -20px;
-    right: -20px;
+    bottom: 20px;
+    left: 20px;
     background: white;
     padding: 1.5rem;
     border-radius: 16px;
@@ -853,6 +861,19 @@ textarea.form-control {
     border-top: 1px solid var(--border-color);
 }
 
+/* Utility Classes */
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.mt-6 {
+    margin-top: 3rem;
+}
+
+.mt-8 {
+    margin-top: 4rem;
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
     .hero-container, .about-container {
@@ -893,7 +914,7 @@ textarea.form-control {
         font-size: 2.5rem;
     }
     
-    .nav-links, .nav-btn {
+    .nav-links {
         display: none;
     }
     
@@ -912,10 +933,28 @@ textarea.form-control {
         background-color: white;
         padding: 2rem;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        gap: 0;
     }
-    
-    .nav-btn.active {
+
+    .nav-links.active li {
+        display: list-item;
+        width: 100%;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-links.active li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links.active a {
         display: block;
-        margin-top: 1rem;
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+    }
+
+    .nav-links.active a::after {
+        display: none;
     }
 }
