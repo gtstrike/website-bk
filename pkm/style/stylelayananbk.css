@@ -63,6 +63,12 @@ body{
     color:var(--slate);
 }
 
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:0.75rem;
+}
+
 .nav-back{
     text-decoration:none;
     color:var(--teal);
@@ -364,4 +370,15 @@ body{
         display:none;
     }
 
+    .nav-actions{
+        width:100%;
+        display:flex;
+        justify-content:flex-end;
+        gap:0.5rem;
+    }
+
+    .nav-back,.nav-cta{
+        padding:.35rem .8rem;
+        font-size:.82rem;
+    }
 }

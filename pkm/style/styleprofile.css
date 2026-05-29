@@ -65,6 +65,12 @@ body{
     display:block;
 }
 
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:.75rem;
+}
+
 .nav-back{
     font-size:.85rem;
     color:var(--teal);
@@ -416,7 +422,19 @@ body{
         display:none;
     }
 
+    .nav-actions{
+        width:100%;
+        display:flex;
+        justify-content:flex-end;
+        gap:0.5rem;
+    }
+
     .nav-back{
+        padding:.35rem .8rem;
+        font-size:.82rem;
+    }
+
+    .nav-cta{
         padding:.35rem .8rem;
         font-size:.82rem;
     }
