@@ -79,6 +79,23 @@ body{
     color:#fff;
 }
 
+.nav-cta{
+    text-decoration:none;
+    color:#fff;
+    background:var(--teal);
+    border:1.5px solid var(--teal);
+    padding:0.45rem 1rem;
+    border-radius:999px;
+    font-size:0.85rem;
+    font-weight:600;
+    transition:0.25s;
+}
+
+.nav-cta:hover{
+    background:var(--teal-dark);
+    border-color:var(--teal-dark);
+}
+
 /* HEADER */
 
 .page-header{
