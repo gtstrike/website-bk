@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Penggunaan App – SMK PGRI 1 Kota Tangerang</title>
+    <meta name="description" content="Panduan lengkap cara menggunakan aplikasi Ruang Bercerita untuk mendapatkan layanan konseling di SMK PGRI 1.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ===== BASE STYLES & VARIABLES ===== */
+        :root {
+            /* Color Palette: White and Tosca */
+            --primary-color: #20B2AA; /* Light Sea Green / Tosca */
+            --primary-dark: #008B8B; /* Dark Cyan */
+            --primary-light: #E0F7FA; /* Very light tosca for backgrounds */
+            
+            --bg-white: #FFFFFF;
+            --bg-light: #F8F9FA;
+            
+            --text-main: #2D3748; /* Dark Gray / Slate for readability */
+            --text-muted: #718096;
+            
+            --border-color: #E2E8F0;
+            
+            /* Typography */
+            --font-family: 'Outfit', sans-serif;
+            
+            /* Transitions & Shadows */
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-main);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(32, 178, 170, 0.3);
+        }
+
+        .btn-white {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .btn-white:hover {
+            background-color: var(--bg-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .nav-logo-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .nav-logo-text {
+            display: block;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .nav-logo-text span {
+            color: var(--primary-color);
+        }
+
+        .nav-logo-sub {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .nav-back {
+            font-weight: 500;
+            color: var(--primary-color);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .nav-back:hover {
+            color: var(--primary-dark);
+        }
+
+        /* ===== TUTORIAL PAGE STYLES ===== */
+        .tutorial-header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(32, 178, 170, 0.1) 0%, rgba(224, 247, 250, 0.5) 100%);
+            margin-top: 80px;
+        }
+
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .tutorial-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tutorial-header-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .tutorial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Steps Section */
+        .tutorial-steps {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .step-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem;
+            background-color: var(--bg-light);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .step-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .step-card.reverse {
+            direction: rtl;
+        }
+
+        .step-card.reverse > * {
+            direction: ltr;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .step-content h2 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .step-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-content li {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .step-content li:before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: 700;
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .step-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .step-card:hover .step-image img {
+            transform: scale(1.05);
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background-color: var(--primary-light);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .tips-section h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tip-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tip-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .tip-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 3rem;
+        }
+
+        .faq-section h3 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            background-color: var(--bg-light);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background-color: var(--bg-light);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        .faq-question h4 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .faq-toggle {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            background-color: white;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding: 0 1.5rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .faq-answer p:last-child {
+            padding-bottom: 1.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 3rem;
+            color: white;
+        }
+
+        .cta-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tutorial-header {
+                padding: 2rem 1.5rem;
+                margin-top: 70px;
+            }
+
+            .tutorial-header h1 {
+                font-size: 2rem;
+            }
+
+            .tutorial-header-icon {
+                font-size: 2.5rem;
+            }
+
+            .tutorial-container {
+                padding: 2rem 1rem;
+            }
+
+            .step-card {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .step-card.reverse {
+                direction: ltr;
+            }
+
+            .step-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+            }
+
+            .step-tutorial-steps {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tutorial-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .tutorial-header p {
+                font-size: 1rem;
+            }
+
+            .step-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .tutorial-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .step-card {
+                padding: 1rem;
+            }
+
+            .faq-question h4 {
+                font-size: 1rem;
+            }
+
+            .cta-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .navbar, .cta-section {
+                display: none;
+            }
+
+            .step-card {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid var(--border-color);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; max-width: 1400px; margin: 0 auto; width: 100%;">
+            <a href="../index.html" class="nav-logo" style="display: flex; align-items: center; gap: 0.5rem;">
+                <span class="nav-logo-icon"> </span>
+                <div>
+                    <span class="nav-logo-text" style="display: block; font-weight: 700; color: var(--text-main);">Ruang<span style="color: var(--primary-color);">Bercerita</span></span>
+                    <span class="nav-logo-sub" style="display: block; font-size: 0.8rem; color: var(--text-muted);">SMK PGRI 1 Kota Tangerang</span>
+                </div>
+            </a>
+            <a href="../index.html" class="nav-back" style="font-weight: 500; color: var(--primary-color); font-size: 1rem;">← Kembali ke Beranda</a>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <header class="tutorial-header">
+        <span class="tutorial-header-icon"></span>
+        <h1>Tutorial Penggunaan App</h1>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="tutorial-container">
+
+        <!-- STEPS -->
+        <section class="tutorial-steps">
+            
+            <!-- Step 1 -->
+            <div class="step-card">
+                <div class="step-content">
+                    <div class="step-number">1</div>
+                    <h2>Buka Ruang Bercerita</h2>
+                    <p>dan scroll kebawah</p>
+                    
+                </div>
+                <div class="step-image">
+                    <img src="../assets/t1.jpg" alt="Langkah 1: Buka dan Daftar">
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-card reverse">
+                <div class="step-content">
+                    <div class="step-number">2</div>
+                    <h2>Klik tombol </h2>
+                    
+                </div>
+                <div class="step-image">
+                    <img src="../assets/t2.jpg" alt="Langkah 2: Jelajahi Layanan">
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-card">
+                <div class="step-content">
+                    <div class="step-number">3</div>
+                    <h2>Lengkapi Formulir</h2>
+                    
+                </div>
+                <div class="step-image">
+                    <img src="../assets/t3.jpg" alt="Langkah 3: Pilih Waktu Konseling">
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-card reverse">
+                <div class="step-content">
+                    <div class="step-number">4</div>
+                    <h2>Cek Email Konfirmasi</h2>
+                    
+                </div>
+                <div class="step-image">
+                    <img src="../assets/t4.jpg" alt="Langkah 4: Isi Formulir Topik">
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step-card">
+                <div class="step-content">
+                    <div class="step-number">5</div>
+                    <h2>Jika gagal maka silahkan mendaftar kembali pada jadwal yang berbeda</h2>
+                    
+                </div>
+                <div class="step-image">
+                    <img src="../assets/t5.jpg" alt="Langkah 5: Lakukan Konseling">
+                </div>
+            </div>
+
+            
+
+        </section>
+
+        <!-- TIPS SECTION -->
+        <section class="tips-section">
+            <h3>💡 Tips Menggunakan Aplikasi</h3>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <h4>✓ Persiapan Diri</h4>
+                    <p>Persiapkan diri dengan baik sebelum sesi dimulai. Catat poin-poin penting yang ingin dibicarakan.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>✓ Privasi Terjamin</h4>
+                    <p>Semua informasi Anda dijaga kerahasiaannya. Konseling dilakukan dengan profesional dan confidential.</p>
+                </div>
+                
+                <div class="tip-item">
+                    <h4>✓ Jangan Takut Bertanya</h4>
+                    <p>Jangan ragu untuk mengajukan pertanyaan atau meminta klarifikasi dari konselor kami.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>✓ Konsisten dan Terbuka</h4>
+                    <p>Datang tepat waktu dan bersikap terbuka untuk hasil konseling yang optimal.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>✓ Pantau Perkembangan</h4>
+                    <p>Lihat progress Anda melalui fitur tracking dan grafik perkembangan di aplikasi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION 
+        <section class="faq-section">
+            <h3>❓ Pertanyaan yang Sering Diajukan</h3>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Bagaimana jika saya lupa password?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Anda dapat mengklik tombol "Lupa Password" di halaman login. Masukkan email atau nomor siswa yang terdaftar, kemudian ikuti instruksi reset password yang dikirimkan ke email Anda. Jika masih kesulitan, hubungi bagian administrasi aplikasi.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Apakah saya bisa membatalkan jadwal konseling yang sudah dibuat?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Ya, Anda bisa membatalkan jadwal konseling minimal 24 jam sebelum sesi dimulai. Caranya, masuk ke menu "Jadwal Saya" dan pilih sesi yang ingin dibatalkan. Klik tombol "Batalkan" dan berikan alasan pembatalan. Anda akan mendapatkan notifikasi pembatalan dan bisa menjadwalkan ulang.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Berapa lama durasi satu sesi konseling?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Satu sesi konseling biasanya berdurasi 30-60 menit, tergantung jenis layanan yang Anda pilih. Layanan konseling pribadi umumnya 45-60 menit, sementara layanan konseling kelompok 60-90 menit. Informasi lengkap tersedia di deskripsi setiap layanan.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Apakah identitas saya dijaga dalam aplikasi ini?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Ya, privasi Anda adalah prioritas utama kami. Semua data dan informasi yang Anda bagikan dijamin keamanannya dan hanya dapat diakses oleh konselor yang ditugaskan. Kami mengikuti standar keamanan data internasional dan tidak akan membagikan informasi Anda tanpa persetujuan.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Bagaimana cara menghubungi konselor di luar jam aplikasi?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Jika ada situasi darurat di luar jam kerja aplikasi, Anda bisa menghubungi kantor BK langsung atau mengirimkan pesan ke fitur chat emergency di aplikasi. Untuk kasus darurat, silakan hubungi nomor emergency yang tersedia di menu bantuan aplikasi.</p>
+                </div>
+            </div>
+
+        </section> -->
+
+        <!-- CTA SECTION -->
+        <section class="cta-section">
+            <h3>Siap untuk Memulai?</h3>
+            <p>Jangan ragu untuk mencari bantuan. Konselor kami siap mendampingimu menjalani perjalanan tumbuh dan berkembang.</p>
+            <div class="cta-buttons">
+                <a href="../index.html" class="btn btn-white">Kembali ke Beranda</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf2ZMfVgEW69U9nOnsNFg3AkCw1i5ld8mi76PJhCVzhNhWg7w/viewform" class="btn" style="background-color: white; color: var(--primary-color); font-weight: 600;">Konsultasi sekarang</a>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // FAQ Toggle Functionality
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+
+        // Close FAQ when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.faq-item')) {
+                document.querySelectorAll('.faq-item.active').forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
